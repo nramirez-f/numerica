@@ -15,7 +15,7 @@ print("=" * 80)
 x = np.linspace(-3,-2,100)
 function(fifth,x,title='$x^5-5x^3+1$',window_title='fifth example on [-3,-2]')
 
-root = bisection(-3,-2,fifth,maxiter=20,debug=True)
+root = bisection(fifth,-3,-2,maxiter=20,debug=True)
 
 print(f'\nApproximate root found: {root}') 
 
@@ -29,7 +29,7 @@ print("=" * 80)
 x = np.linspace(0,1,100)
 function(fifth,x,title='$x^5-5x^3+1$',window_title='fifth example on [0,1]')
 
-root = bisection(0,1,fifth,maxiter=20,debug=True)
+root = bisection(fifth,0,1,maxiter=20,debug=True)
 
 print(f'\nApproximate root found: {root}') 
 
@@ -45,7 +45,7 @@ print("=" * 80)
 x = np.linspace(2,3,1000)
 function(fifth,x,title='$x^5-5x^3+1$',window_title='Fifth example on [2,3]')
 
-root = bisection(2,3,fifth,maxiter=20,debug=True)
+root = bisection(fifth,2,3,maxiter=20,debug=True)
 
 print(f'\nApproximate root found: {root}')
 
