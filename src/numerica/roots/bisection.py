@@ -1,6 +1,6 @@
 import numpy as np
 
-def bisection(a, b, f, tol=1e-12, maxiter = 0, debug=False, display_precision=8):
+def bisection(f, a, b, tol=1e-12, maxiter = 0, debug=False, display_precision=8):
 
     if (debug):
         print(f"{'Iter':>5} | {'a_n':>15} | {'b_n':>15} | {'root':>15} | {'f(root)':>15}")
