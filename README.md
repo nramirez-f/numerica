@@ -1,2 +1,2 @@
-# numerica
-Numerical Methods
+# Numerical Methods Library
+
