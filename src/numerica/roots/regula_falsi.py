@@ -10,11 +10,6 @@ def regula_falsi(f, a, b, tol=1e-12, maxiter = 1000, debug=False, display_precis
         
         c = b - f(b)*(b-a)/(f(b) - f(a))
 
-        if (f(a)*f(c) < 0.0):
-            b = c
-        else:
-            a = c
-
         if (debug):
             print(f"{n:>5} | {a:>15.{display_precision}e} | {b:>15.{display_precision}e} | {c:>15.{display_precision}e} | {f(c):>15.{display_precision}e}")
 
@@ -22,6 +17,11 @@ def regula_falsi(f, a, b, tol=1e-12, maxiter = 1000, debug=False, display_precis
             if (debug):
                 print(f'\nFound root with tol {tol:.{display_precision}e} at x = {c:.{display_precision}e} with f(x) = {f(c):.{display_precision}e}')
             return c
+        
+        if (f(a)*f(c) < 0.0):
+            b = c
+        else:
+            a = c
         
         n += 1
 

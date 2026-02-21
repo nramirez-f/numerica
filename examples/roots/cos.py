@@ -19,7 +19,7 @@ root = bisection(cos,a,b,tol=1e-7,debug=True)
 
 print(f'\nApproximate root found: {root}')
 
-print(f'\nNote:\nWe observe that with 20 iterations we stabilize five decimal digits.')
+print(f'\nNote:\nWe observe that with 24 iterations we stabilize six decimal digits.')
 
 print(f"\nStudy of the root in the interval [{a},{b}] with Regula Falsi method")
 print("=" * 80)
@@ -28,4 +28,4 @@ root = regula_falsi(cos,a,b,tol=1e-7,debug=True)
 
 print(f'\nApproximate root found: {root}')
 
-print(f'\nNote:\nWe observe that Regula Falsi converges four times faster than Bisection\nand the approximation is more accurate.')
+print(f'\nNote:\nWe observe that Regula Falsi converges four times faster than Bisection')
