@@ -6,15 +6,15 @@ def bisection(f, a, b, tol=1e-12, maxiter = 100, debug=False, display_precision=
         raise ValueError(f"No sign change: f(a)={f(a):.{display_precision}e} and f(b)={f(b):.{display_precision}e} have the same sign. Bisection method cannot be applied.")
 
     if (debug):
-        print(f"{'Iter':>5} | {'a_n':>15} | {'b_n':>15} | {'root':>15} | {'f(root)':>15}")
+        print(f"{'Iter':>5} | {'left_extreme':>15} | {'right_extreme':>15} | {'approx_root':>15} | {'value':>15}")
         print("-" * 80)
 
     # Max iterations depending on tolerance
-    maxiter_tol = int((np.log(b-a) - np.log(tol))/np.log(2)-1) + 1 # hay que revisar el -1 ese
+    maxiter_tol = int((np.log(b-a) - np.log(tol))/np.log(2) - 1) + 1
 
     N = min(maxiter, maxiter_tol)
 
-    n = 0
+    n = 1
     while (n < (N + 1)):
         
         approx_root = 0.5 * (a + b)
@@ -31,6 +31,6 @@ def bisection(f, a, b, tol=1e-12, maxiter = 100, debug=False, display_precision=
 
     if (debug):
         print('-' * 80)
-        print(f'\nApproximate root at x = {approx_root:.{display_precision}e} with f(x) = {f(approx_root):.{display_precision}e}')
+        print(f'\nApproximate root found at x = {approx_root:.{display_precision}e} with value = {f(approx_root):.{display_precision}e}')
 
     return approx_root
