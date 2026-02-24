@@ -13,7 +13,10 @@ def regula_falsi(f, a, b, tol=1e-12, maxiter = 1000, debug=False, stop_criteria=
     c_old = a
     while (n < (maxiter + 1)):
         
-        c = b - f(b)*(b-a)/(f(b) - f(a))
+        if (f(b) == f(a)):
+            raise ValueError(f"Function values at the extremes are equal: f(a{n})={f(a):.{display_precision}e} and f(b{n})={f(b):.{display_precision}e}. Method cannot be applied.")
+        else:
+            c = b - f(b)*(b-a)/(f(b) - f(a))
 
         if (debug):
             print(f"{n:>5} | {a:>15.{display_precision}e} | {b:>15.{display_precision}e} | {c:>15.{display_precision}e} | {f(c):>15.{display_precision}e}")
