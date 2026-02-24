@@ -1,5 +1,5 @@
 import numpy as np
-from numerica.roots import bisection
+from numerica.roots import bisection, regula_falsi, secant
 from numerica.plot import function
 
 def fifth(x):
@@ -7,51 +7,41 @@ def fifth(x):
 
 print("=" * 80)
 print("Problem: Find the roots of f(x) = x^5 - 5x^3 + 1")
-print("\nMethod: We will use the bisection method to approximate the roots")
-print("in three different intervals where sign changes occur.")
+print("\nMethod: We will use the methods of bisection, regula falsi")
+print("and secant to approximate the roots in a interval [a,b] where sign changes occur.")
 print("=" * 80)
 
 x = np.linspace(-2.5,2.5,100)
 function(fifth,x,title='$f(x) = x^5-5x^3+1$',window_title='Fifth example function')
 
-print("\nStudy of the root in the interval [-3,-2]")
+a = float(input("\nEnter the left extreme of the interval (a): "))
+b = float(input("Enter the right extreme of the interval (b): "))
+
+print(f"\nStudy of the root in the interval [{a},{b}]")
 print("=" * 80)
 
-root = bisection(fifth,-3,-2,maxiter=20,debug=True)
+print('\n# Bisection\n')
 
-print(f'\nApproximate root found: {root}') 
+bisection(fifth,a,b,tol=1e-7,debug=True)
 
-print(f'\nNote:\nWe observe that with 20 iterations we stabilize six decimal digits.')
+print('\n# Regula Falsi (Heuristic)\n')
 
-print("=" * 80)
+regula_falsi(fifth,a,b,tol=1e-7,stop_criteria='heuristic',debug=True)
 
-x = np.linspace(-3,-2,100)
-function(fifth,x,title='$f(x) = x^5-5x^3+1$',window_title='fifth example on [-3,-2]')
+print('\n# Regula Falsi (Value)\n')
 
-print("\nStudy of the root in the interval [0,1]")
-print("=" * 80)
+regula_falsi(fifth,a,b,tol=1e-7,stop_criteria='value',debug=True)
 
-root = bisection(fifth,0,1,maxiter=20,debug=True)
+print('\n# Secant (Heuristic)\n')
 
-print(f'\nApproximate root found: {root}') 
+secant(fifth,a,b,tol=1e-7,stop_criteria='heuristic',debug=True)
 
-print(f'\nNote:\nWe observe that with 20 iterations we stabilize four decimal digits.')
+print('\n# Secant (Value)\n')
 
-print("=" * 80)
-
-x = np.linspace(0,1,100)
-function(fifth,x,title='$f(x) = x^5-5x^3+1$',window_title='fifth example on [0,1]')
-
-print("\nStudy of the root in the interval [2,3]")
-print("=" * 80)
-
-root = bisection(fifth,2,3,maxiter=20,debug=True)
-
-print(f'\nApproximate root found: {root}')
-
-print(f'\nNote:\nWe observe that with 20 iterations we stabilize five decimal digits.')
+secant(fifth,a,b,tol=1e-7,stop_criteria='value',debug=True)
 
 print("=" * 80)
 
-x = np.linspace(2,3,1000)
-function(fifth,x,title='$f(x) = x^5-5x^3+1$',window_title='Fifth example on [2,3]')
+x = np.linspace(a,b,100)
+function(fifth,x,title='$f(x) = x^5-5x^3+1$',window_title=f'fifth example on [{a},{b}]')
+    

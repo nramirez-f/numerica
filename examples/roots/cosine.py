@@ -1,13 +1,12 @@
 import numpy as np
-from numerica.roots import bisection
-from numerica.roots import regula_falsi
+from numerica.roots import bisection, regula_falsi, secant
 from numerica.plot import function
 
 def cos(x):
     return np.cos(x) - x
 
 a = 0.0
-b = 3.0
+b = 1.0
 
 x = np.linspace(a,b,100)
 function(cos,x,title='$cos(x)-x$',window_title=f'Cosine example on [{a},{b}]')
@@ -29,3 +28,9 @@ root = regula_falsi(cos,a,b,tol=1e-7,debug=True)
 print(f'\nApproximate root found: {root}')
 
 print(f'\nNote:\nWe observe that Regula Falsi converges four times faster than Bisection')
+
+root = secant(cos,a,b,tol=1e-7,debug=True)
+
+print(f'\nApproximate root found: {root}')
+
+print(f'\nNote:\nWe observe that Secant converges even faster than Regula Falsi')
