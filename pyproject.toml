@@ -15,6 +15,7 @@ authors = [
 dependencies = [
     "numpy",
     "matplotlib",
+    "netcdf4",
 ]
 
 [project.urls]
