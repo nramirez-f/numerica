@@ -5,6 +5,8 @@ from numerica.ode import euler, heun, taylor, heun, rk4
 import pandas as pd
 import os
 
+from numerica.ode import euler
+
 def exact_solution(t):
     return t**2 - 4.0*t + 8.0 - 7.0 * np.exp(-0.5*t)
 
@@ -27,7 +29,7 @@ samples = 4
 dt_list = [0.5 / (refination_factor**i) for i in range(samples)]
 
 Method = 'Approximate Solution'
-time_integrator = rk4
+time_integrator = euler
 
 # Plotting Approx solutions
 for dt in dt_list:    
