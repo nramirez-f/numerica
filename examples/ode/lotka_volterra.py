@@ -29,7 +29,7 @@ prey = file.variables['u0'][:]
 predator = file.variables['u1'][:]
 file.close()
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+fig, axes = plt.subplots(2, 2)
 ax_prey = axes[0, 0]
 ax_pred = axes[0, 1]
 ax_phase = axes[1, :]
