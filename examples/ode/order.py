@@ -4,7 +4,7 @@ import netCDF4 as nc
 import pandas as pd
 import os
 
-Method = 'RK4'
+method = 'euler'
 from numerica.ode import euler as time_integrator
 
 def exact_solution(t):
@@ -31,17 +31,17 @@ dt_list = [0.5 / (refination_factor**i) for i in range(samples)]
 # Plotting Approx solutions
 for dt in dt_list:    
 
-    time_integrator(f, 0.0, 1.0, 10.0, dt, filepath=f'approx_solution_{dt}.nc')
+    time_integrator(f, 0.0, 1.0, 10.0, dt, filepath=f'{method}_{dt}.nc')
 
-    file = nc.Dataset(f'approx_solution_{dt}.nc', 'r')
+    file = nc.Dataset(f'{method}_{dt}.nc', 'r')
 
-    time = file.variables['t'][:]
+    time = file.variables['time'][:]
     u = file.variables['u'][:]
-    plt.plot(time, u, label=f'{Method} (dt={dt})', marker='o', markersize=2)
+    plt.plot(time, u, label=f'{method} (dt={dt})', marker='o', markersize=2)
 
     file.close()
 
-plt.title(f'Approximate Solutions using {Method} Method')
+plt.title(f'Approximate Solutions using {method} method')
 plt.xlabel('t(s)')
 plt.ylabel('u(t)')
 plt.legend()
@@ -51,8 +51,8 @@ plt.show()
 errors_list = []
 
 for dt in dt_list:    
-    file = nc.Dataset(f'approx_solution_{dt}.nc', 'r')
-    time = file.variables['t'][:]
+    file = nc.Dataset(f'{method}_{dt}.nc', 'r')
+    time = file.variables['time'][:]
     u = file.variables['u'][:]
     exact_u = exact_solution(time)
     error = np.abs(u - exact_u)
@@ -70,7 +70,8 @@ df = pd.DataFrame(error_data)
 print(f"\nOrder Table (Refinement Factor = {refination_factor}):")
 print(df.to_string(index=False))
 
+# Delete generated NetCDF files
 for dt in dt_list:
-    filename = f'approx_solution_{dt}.nc'
+    filename = f'{method}_{dt}.nc'
     if os.path.exists(filename):
         os.remove(filename)

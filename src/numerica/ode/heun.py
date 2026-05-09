@@ -2,7 +2,7 @@ import netCDF4 as nc
 import time
 
 def heun(f,t0,u0,T,dt,
-          filepath=None,iter_name='t',iter_unit='s',var_name='u'):
+          filepath=None,iter_name='time',iter_unit='s',var_name='u'):
 
     if (filepath):
         ncfile = nc.Dataset(filepath, 'w', format='NETCDF4')

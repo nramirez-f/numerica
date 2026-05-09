@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
 import os
-from numerica.ode import euler
+from numerica import ode
 
 def f1(t,U):
     return 0.25*U[0] - 0.01*U[0]*U[1]
@@ -20,11 +20,11 @@ dt = 0.1 # Time step
 U0 = np.array([80.0, 30.0]) # Initial conditions: [Prey population, Predator population]
 
 # Time integration for ODE system
-euler(F, t0, U0, T, dt, filepath='lotka_volterra.nc')
+ode.euler(F, t0, U0, T, dt, filepath='lotka_volterra.nc')
 
 # Plotting results
 file = nc.Dataset('lotka_volterra.nc', 'r')
-time = file.variables['t'][:]
+time = file.variables['time'][:]
 prey = file.variables['u0'][:]
 predator = file.variables['u1'][:]
 file.close()
@@ -74,5 +74,6 @@ ax_phase.grid(True)
 plt.tight_layout()
 plt.show()
 
+# Clean up generated NetCDF file
 if os.path.exists('lotka_volterra.nc'):
         os.remove('lotka_volterra.nc')
