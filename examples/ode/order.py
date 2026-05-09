@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
-from numerica.ode import euler, heun, taylor, heun, rk4
 import pandas as pd
 import os
 
-from numerica.ode import euler
+Method = 'RK4'
+from numerica.ode import euler as time_integrator
 
 def exact_solution(t):
     return t**2 - 4.0*t + 8.0 - 7.0 * np.exp(-0.5*t)
@@ -27,9 +27,6 @@ def df2(t,u):
 refination_factor = 2
 samples = 4
 dt_list = [0.5 / (refination_factor**i) for i in range(samples)]
-
-Method = 'Approximate Solution'
-time_integrator = euler
 
 # Plotting Approx solutions
 for dt in dt_list:    

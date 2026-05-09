@@ -16,6 +16,7 @@ dependencies = [
     "numpy",
     "matplotlib",
     "netcdf4",
+    "pandas",
 ]
 
 [project.urls]
