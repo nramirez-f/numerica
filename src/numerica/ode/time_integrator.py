@@ -7,10 +7,15 @@ def euler(dt, U, F, t = None):
     """
     Euler method for advancing the solution of an ODE by one time step.
     """
-
-    if (t is None):
-        U_new = U + dt * F(U)
+    
+    if callable(F):
+        if t is None:
+            dU_dt = F(U)
+        else:
+            dU_dt = F(t, U)
     else:
-        U_new = U + dt * F(t, U)
-
+        dU_dt = F
+    
+    U_new = U + dt * dU_dt
+    
     return U_new
