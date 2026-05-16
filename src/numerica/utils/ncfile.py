@@ -44,7 +44,7 @@ class NcFile:
         self.coords_names = []
         for coord_name, coord_values in spatialCoords.items():
             ncfile.createDimension(coord_name, len(coord_values))
-            coord_var = ncfile.createVariable(coord_name, "f4", (coord_name,))
+            coord_var = ncfile.createVariable(coord_name, "f8", (coord_name,))
             coord_var[:] = coord_values
             coord_var.unit = "unit"
             self.coords_names.append(coord_name)
@@ -56,7 +56,7 @@ class NcFile:
         ncfile = nc.Dataset(self.filepath, 'a', self.ffile)
 
         for var_name in vars:
-            var = ncfile.createVariable(var_name, "f4", ('time', *self.coords_names))
+            var = ncfile.createVariable(var_name, "f8", ('time', *self.coords_names))
             var.units = "unit"
 
         ncfile.close()

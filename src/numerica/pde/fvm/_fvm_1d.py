@@ -122,7 +122,7 @@ def fvm_1d( x_min:float,
 
         F = -(F_star[1:] - F_star[:-1]) / dx
         
-        U = time_integrator.euler(dt, U, F)
+        U = time_integrator._euler(dt, U, F)
         if logging: log += f" mass: {compute_mass(U, dx):.4e} |"
 
         t += dt

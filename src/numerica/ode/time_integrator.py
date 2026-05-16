@@ -3,19 +3,22 @@
 One-step time integrators for ODEs.
 """
 
-def euler(dt, U, F, t = None):
+def _euler(dt, U0, F, t = None):
     """
     Euler method for advancing the solution of an ODE by one time step.
     """
     
     if callable(F):
         if t is None:
-            dU_dt = F(U)
+            F0 = F(U0)
         else:
-            dU_dt = F(t, U)
+            F0 = F(t, U0)
     else:
-        dU_dt = F
+        F0 = F
     
-    U_new = U + dt * dU_dt
+    U1 = U0 + dt * F0
     
-    return U_new
+    return U1
+
+
+
